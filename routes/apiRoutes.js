@@ -10,7 +10,7 @@ router.get('/',(req,res)=>{
 
 router.post('/user/signUp',userController.register)
 router.post('/user/login',userController.login)
-router.get('/user/list',verifyToken,userController.listUsers)
+router.get('/user/list',userController.listUsers)
 router.put('/user',verifyToken,userController.updateUser)
 
 module.exports = router
