@@ -9,6 +9,7 @@ let options = {
     }
 }
 
+//configuring transport
 const logConfiguration = {
     'transports': [
         new winston.transports.Console(options.console)
@@ -18,6 +19,7 @@ const logConfiguration = {
 
 const logger = winston.createLogger(logConfiguration);
 
+//to add  morgan logs to winston
 logger.stream = {
     write: function (message, encoding) {
         logger.info(message);
