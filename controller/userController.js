@@ -71,9 +71,10 @@ const login = async (req, res) => {
             throw new Error("Incorrect password.")
         }
 
-        let token = jwt.sign({ email: user.email }, process.env.JWT_KEY)
+        let accessToken = jwt.sign({ email: user.email }, process.env.JWT_KEY,{expiresIn:"2m"})
+        let refreshToken = jwt.sign({ phone: user.phone }, process.env.REFRESH_TOKEN_KEY,{expiresIn:"1d"})
 
-        res.status(200).send({ token })
+        res.status(200).send({ accessToken, refreshToken})
     }
     catch (error) {
         console.log(error)
